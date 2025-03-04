@@ -1,0 +1,8 @@
+#reading-line-guide {
+  position: fixed;
+  height: 2px;
+  background-color: rgba(255, 0, 0, 0.5);
+  z-index: 9999;
+  pointer-events: none;
+  transition: width 0.2s ease, left 0.2s ease;
+}

@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Reading Line Guide",
+  "version": "1.0",
+  "description": "Adds a horizontal line that follows your cursor to help with reading",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_title": "Toggle Reading Line",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "increase-width": {
+      "suggested_key": { "default": "Ctrl+Shift+Up" },
+      "description": "Increase reading line width"
+    },
+    "decrease-width": {
+      "suggested_key": { "default": "Ctrl+Shift+Down" },
+      "description": "Decrease reading line width"
+    },
+    "toggle-fixed": {
+      "suggested_key": { "default": "Ctrl+L" },
+      "description": "Toggle fixed position of reading line"
+    }
+  }
+}
