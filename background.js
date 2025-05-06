@@ -1,9 +1,7 @@
 let currentWidth = 100;
 
 chrome.action.onClicked.addListener((tab) => {
-  console.log("Extension icon clicked for tab:", tab.id);
-
-  if (tab.url && tab.url.startsWith('chrome://')) {
+  if (!tab.url || tab.url.startsWith('chrome://')) {
     console.error("Cannot inject into chrome:// pages");
     return;
   }
@@ -11,15 +9,6 @@ chrome.action.onClicked.addListener((tab) => {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     files: ["content.js"]
-  }).then(() => {
-    console.log("Content script injected successfully");
-    chrome.tabs.sendMessage(tab.id, { action: "toggle" }, (response) => {
-      if (chrome.runtime.lastError) {
-        console.error("Toggle message failed:", chrome.runtime.lastError.message);
-      } else {
-        console.log("Toggle message sent successfully, response:", response);
-      }
-    });
   }).catch((err) => {
     console.error("Failed to inject content script:", err.message);
   });
