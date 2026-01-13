@@ -1,7 +1,7 @@
 console.log("Content script loaded");
 
 (function () {
-  let lineActive = false;
+  let lineActive = true;
   let readingLine = null;
   let initialized = false;
   let lineWidth = 100; // Default width percentage
@@ -26,7 +26,7 @@ console.log("Content script loaded");
     console.log("Creating reading line element");
     readingLine = document.createElement('div');
     readingLine.id = 'reading-line-guide';
-    readingLine.style.display = 'none';
+    readingLine.style.display = 'block';
     readingLine.style.height = '2px';
     readingLine.style.zIndex = '9999';
     readingLine.style.position = 'fixed';
